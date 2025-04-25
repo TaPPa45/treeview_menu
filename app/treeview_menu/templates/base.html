@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django Menu{% endblock %}</title>
+    <style>
+        :root {
+            --primary-color: #2d3436;
+            --accent-color: #0984e3;
+            --hover-color: #74b9ff;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            background: #f5f6fa;
+        }
+
+        .tree-menu {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+
+        .tree-menu li {
+            position: relative;
+            margin: 0.5rem 0;
+        }
+
+        .tree-menu li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tree-menu li a:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--accent-color);
+            transform: scaleY(0);
+            transition: var(--transition);
+        }
+
+        .tree-menu li > a.active {
+            background: #e3f2fd;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .tree-menu li > a.active:before {
+            transform: scaleY(1);
+            background: #f8f9fa;
+        }
+
+        .tree-menu li a:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+
+        .tree-menu ul {
+            padding-left: 2rem;
+            margin: 0.5rem 0 0 0;
+            position: relative;
+        }
+
+        .tree-menu ul:before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background: #dfe6e9;
+        }
+
+        .tree-menu li.expanded > a:after {
+            content: '▼';
+            margin-left: auto;
+            font-size: 0.8em;
+            color: #636e72;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 0 auto;">
+        {% load menu_tags %}
+        {% block menu %}
+            {% draw_menu 'меню' %}
+        {% endblock %}
+    </div>
+</body>
+</html>

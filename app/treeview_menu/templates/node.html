@@ -1,0 +1,14 @@
+<li {% if node.is_expanded %} class="expanded" {% endif %}>
+
+    <a {% if node.is_active %}class="active"{% endif %} href="{{ node.item.get_url }}">
+        {{ node.item.name }}
+    </a>
+
+    {% if node.children %}
+        <ul  {% if not node.is_expanded and not node.item.expand %}style="display:none"{% else %}style="display:block"{% endif %}>
+            {% for child in node.children %}
+                {% include "node.html" with node=child %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
