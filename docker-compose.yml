@@ -12,7 +12,7 @@ services:
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
       - PYTHONPATH=/app  
     volumes:
-      - ./app:/app/app
+      - ./app:/app
       - sqlite_data:/app/db
       - static_volume:${STATIC_ROOT}
     ports:

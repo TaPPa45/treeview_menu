@@ -1,5 +1,5 @@
 #!/bin/bash
-cd app
+
 echo "Применение миграций..."
 python manage.py migrate --noinput
 
